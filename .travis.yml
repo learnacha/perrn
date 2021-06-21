@@ -22,3 +22,15 @@ after_success:
   - docker push foreverithd/perrn-nginx
   - docker push foreverithd/perrn-server
   - docker push foreverithd/perrn-worker
+
+deploy:
+  provider: elasticbeanstalk
+  region: "ap-south-1"
+  app: "perrn"
+  env: "Perrn-env-2"
+  bucket_name: "elasticbeanstalk-ap-south-1-824192598227"
+  bucket_path: "perrn-bucket"
+  on:
+    branch: main
+  access_key_id: $AWS_ACCESS_KEY
+  secret_access_key: $AWS_SECRET_KEY
